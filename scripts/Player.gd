@@ -9,6 +9,10 @@ func controller():
 	moveLeft  = Input.is_action_pressed("ui_left")
 	moveUp    = Input.is_action_pressed("ui_down")
 	moveDown  = Input.is_action_pressed("ui_up")
+	
+	if Input.is_action_just_pressed("atack"):
+		_punch()
+	
 	pass
 
 func _process(delta):

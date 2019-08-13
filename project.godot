@@ -19,6 +19,10 @@ config/name="Popper Paradox"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon_dino.png"
 
+[autoload]
+
+Utils="*res://scripts/Utils.gd"
+
 [input]
 
 atack={
