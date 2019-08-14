@@ -16,6 +16,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Body"]
 texture = ExtResource( 2 )
+flip_h = true
 
 [node name="Punch" type="Area2D" parent="Body"]
 position = Vector2( 107, -53 )

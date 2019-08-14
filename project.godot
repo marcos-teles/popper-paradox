@@ -22,6 +22,7 @@ config/icon="res://icon_dino.png"
 [autoload]
 
 Utils="*res://scripts/Utils.gd"
+GManager="*res://scripts/GManager.gd"
 
 [input]
 

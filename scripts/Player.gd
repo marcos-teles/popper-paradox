@@ -2,19 +2,17 @@ extends "res://scripts/Person.gd"
 
 
 func _ready():
-	pass # Replace with function body.
+	GManager.player_1 = self
+	pass
 
+func _process(delta):
+	controller()
+	pass
+	
 func controller():
 	moveRight = Input.is_action_pressed("ui_right")
 	moveLeft  = Input.is_action_pressed("ui_left")
 	moveUp    = Input.is_action_pressed("ui_down")
 	moveDown  = Input.is_action_pressed("ui_up")
-	
-	if Input.is_action_just_pressed("atack"):
-		_punch()
-	
-	pass
-
-func _process(delta):
-	controller()
+	punch     = Input.is_action_just_pressed("atack")
 	pass

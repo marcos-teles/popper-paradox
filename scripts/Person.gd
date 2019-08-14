@@ -8,6 +8,7 @@ var moveRight
 var moveLeft
 var moveUp
 var moveDown
+var punch
 var punch_coll
 var body
 
@@ -20,6 +21,7 @@ func _ready():
 	moveLeft  = false
 	moveUp    = false
 	moveDown  = false
+	punch     = false
 	punch_coll = $Body/Punch/Collision
 	body = $Body
 	pass # Replace with function body.
@@ -33,7 +35,7 @@ func movement(delta):
 	velocity   = Vector2();
 	velocity.x = int(moveRight) - int(moveLeft)
 	velocity.y = int(moveUp) - int(moveDown)
-	move_and_collide(velocity*speed*delta)
+	move_and_collide(velocity.normalized()*speed*delta)
 	
 	if(velocity.x !=0):
 		body.scale.x = velocity.x
@@ -47,18 +49,17 @@ func _die():
 	print(self.name, "die")
 	pass
 
-func _punch():
-	if punch_coll.disabled:
-		punch_coll.disabled = false
-		Utils.set_time_out(self, "disable_hit", 0.1)	
-	pass
-
 func check_punch_hit():
+	if punch && punch_coll.disabled:
+		punch_coll.disabled = false
+		Utils.set_time_out(self, "disable_hit", 0.1)
+		
 	if punch_coll.disabled == false && punch_coll.get_parent().get_overlapping_bodies().size()>0:
 		disable_hit()
 		print("hit")
 	pass
 
 func disable_hit():
+	punch = false
 	punch_coll.disabled = true
 	pass
