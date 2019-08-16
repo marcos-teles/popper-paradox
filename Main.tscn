@@ -5,10 +5,16 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="Hud" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 315.034, 333.122 )
 speed = 2.0
+life = 100
 
 [node name="DinoHead" parent="." instance=ExtResource( 2 )]
 position = Vector2( 691.869, 248.711 )
 speed = 1.0
+life = 100

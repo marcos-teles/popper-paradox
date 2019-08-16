@@ -24,6 +24,7 @@ func _ready():
 	punch     = false
 	punch_coll = $Body/Punch/Collision
 	body = $Body
+	self.scale = Vector2(0.6, 0.6);
 	pass # Replace with function body.
 
 func _process(delta):
@@ -42,24 +43,41 @@ func movement(delta):
 	pass
 	
 func _take_damage(value):
-	print(self.name," damage ", value)
+	life -= value
+	if life <=0:
+		life = 0
+		_die()
+	print(self.name," life ", life)
 	pass
 
 func _die():
-	print(self.name, "die")
+	print(self.name, " die")
+	visible = false
 	pass
 
 func check_punch_hit():
+	
 	if punch && punch_coll.disabled:
 		punch_coll.disabled = false
 		Utils.set_time_out(self, "disable_hit", 0.1)
 		
-	if punch_coll.disabled == false && punch_coll.get_parent().get_overlapping_bodies().size()>0:
-		disable_hit()
-		print("hit")
+	if punch_coll.disabled == false:
+		var targets = punch_coll.get_parent().get_overlapping_bodies()
+		if targets.size()>0:
+			give_damage(targets)
+			disable_hit()
+		
 	pass
 
 func disable_hit():
 	punch = false
 	punch_coll.disabled = true
 	pass
+	
+
+func give_damage(targets):
+	for target in targets:
+		target._take_damage(10)
+	pass
+	
+	
